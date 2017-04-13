@@ -32,6 +32,8 @@ iris_target.columns = ['species']
 print(iris_data.head())
 print(iris_target.head())
 
+#future note: 0 - Iris Setosa, 1 - Iris Versicolour, 2 - Iris Virginica
+
 #now let's start building our machine learning model !!!!
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -49,7 +51,7 @@ knn.fit(X, y)
 print(knn.score(X, y))
 
 #########################################################################
-########## II - TRAIN / TEST SPLIT + FIT / PREDICT / ACCURACY ###########
+############### II - TRAIN / TEST SPLIT + FIT / ACCURACY ################
 #########################################################################
 
 #for this we'll need some more modules so let's get them
@@ -70,3 +72,20 @@ knn.fit(X_train, y_train)
 
 #and to conclude this part let's see how this works
 print(knn.score(X_test, y_test))
+
+#########################################################################
+############## III - PREDICT (WITHOUT KNOWING THE TRUTH) ################
+#########################################################################
+
+#now, we are going to use predict() to see how we can use our classifier on new, unidentified samples
+#for example, we have new data X
+
+X_new = [ 5.7,  3.8,  1.7,  0.3]
+
+#we already trained and fitted our classifier so let's put it to use
+
+new_prediction = knn.predict(X_new)
+
+print(new_prediction)
+
+#So, with an accuracy of 0.966666666667 we can say it's a Iris Setosa
