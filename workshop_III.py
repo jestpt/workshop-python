@@ -22,17 +22,14 @@ iris = datasets.load_iris()
 #let's look at our dataset
 print(iris)
 
-#with pandas, let's work this a bit more so it's more presentable
-iris_data = pd.DataFrame(datasets.load_iris().data)
-iris_target = pd.DataFrame(datasets.load_iris().target)
+#so let's separate our features (X) from our target(y)
+X = iris.data
+y = iris.target
 
-#now we name the header of the columns with the information we have
-iris_data.columns = ['sepal_lenght', 'sepal_width', 'petal_lenght', 'petal_width']
-iris_target.columns = ['species']
-print(iris_data.head())
-print(iris_target.head())
+#now we use pandas to name the columns and have a nice look at our features
+iris_table = pd.DataFrame(X, columns = iris.feature_names)
 
-#future note: 0 - Iris Setosa, 1 - Iris Versicolour, 2 - Iris Virginica
+print(iris_table.head())
 
 #now let's start building our machine learning model !!!!
 from sklearn.neighbors import KNeighborsClassifier
@@ -40,11 +37,7 @@ from sklearn.neighbors import KNeighborsClassifier
 #after import we create the classifier as we like
 knn = KNeighborsClassifier(n_neighbors = 6)
 
-#now we are going to feed our classifier X aka the features and y aka the classes
-X = iris_data.values
-y = iris_target.values
-
-#to end it we fit our classifier to our data
+#using X and y defined previously we'll fit our dataset to the classifier we just created
 knn.fit(X, y)
 
 #now, although it's not correct, let's test our model against the dataset we used to create it
