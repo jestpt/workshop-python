@@ -31,6 +31,13 @@ iris_table = pd.DataFrame(X, columns = iris.feature_names)
 
 print(iris_table.head())
 
+#to do some cool visual EDA let's import some more tools
+
+import seaborn as sns; sns.set(style="ticks", color_codes=True)
+iris_EDA = sns.load_dataset("iris")
+sns.pairplot(iris_EDA, hue='species')
+sns.plt.show()
+
 #now let's start building our machine learning model !!!!
 from sklearn.neighbors import KNeighborsClassifier
 
