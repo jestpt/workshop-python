@@ -12,8 +12,9 @@
 #first, we import the packages we are going to use
 import sklearn as skl
 import pandas as pd
-import seaborn as sns; sns.set(style="ticks", color_codes=True)
 import os
+import sys
+import matplotlib.pylab as plt
 
 #secondly, we import the sample datasets from skl to work
 from sklearn import datasets
@@ -42,22 +43,18 @@ print('Ammount of targets: ' + str(len(iris['data'])))
 os.system('pause')
 os.system('cls')
 
-#so let's separate our data (X) from our target(y)
-X = iris['data']
-y = iris['target']
+#with pandas, let's work this a bit more so it's more presentable
+iris_data = pd.DataFrame(iris['data'])
 
-#now we'll use pandas to name the columns and have a nice look at our features
-iris_table = pd.DataFrame(X, columns = iris['feature_names'])
-print('# --- Better visualization with Pandas')
-print(iris_table.head())
+#now we name the header of the columns with the information we have
+iris_data.columns = iris['feature_names']
+#add the column with the targets
+iris_data['Name'] = iris['target']
+
+print(iris_data.head())
 os.system('pause')
 os.system('cls')
-
-#to do some cool visual EDA we'll use seaborn that we already imported as sns
-
-iris_EDA = sns.load_dataset("iris")
-sns.pairplot(iris_EDA, hue='species')
-sns.plt.show()
+## Future note: 0 - Iris Setosa, 1 - Iris Versicolour, 2 - Iris Virginica ##
 
 #now let's start building our machine learning model !!!!
 from sklearn.neighbors import KNeighborsClassifier
@@ -69,14 +66,28 @@ from sklearn.neighbors import KNeighborsClassifier
 #		Therefore, n_neighbors could be: 5, 7, 11, ...
 knn = KNeighborsClassifier(n_neighbors = 5)
 
-#using X and y defined previously we'll fit our dataset to the classifier we just created
+#now we are going to feed our classifier X aka the features and y aka the classes
+X = iris_data.values[:,0:4]
+y = iris['target']
+
+#to end it we fit our classifier to our data 
+#(Training Phase)
 knn.fit(X, y)
 
-#now, although it's not correct, let's test our model against the dataset we used to create it
-print(knn.score(X, y))
+#graph
+print(knn.kneighbors_graph(X))
+ax = iris_data[iris_data.Name == 0].plot.scatter(x=iris_data.columns[0], y=iris_data.columns[1], color='blue', label='1')
+ax = iris_data[iris_data.Name == 1].plot.scatter(x=iris_data.columns[0], y=iris_data.columns[1], color='red', label='2', ax=ax)
+iris_data[iris_data.Name == 2].plot.scatter(x=iris_data.columns[0], y=iris_data.columns[1], color='green', label='3', ax=ax)
+plt.show()
 os.system('pause')
 os.system('cls')
 
+#now, although it's not correct, let's test our model against the dataset we used to create it
+#(Test phase)
+print(knn.score(X, y))
+os.system('pause')
+os.system('cls')
 #########################################################################
 ############### II - TRAIN / TEST SPLIT + FIT / ACCURACY ################
 #########################################################################
@@ -84,8 +95,8 @@ os.system('cls')
 #for this we'll need some more modules so let's get them
 from sklearn.model_selection import train_test_split
 
-#we already have our data and target defined but, as I said, that's not good practice
-#so let's use a new method to make our model more accurate and open world ready
+#we already have our data and target defined but, as I said, that's not good practice so let's use a new
+#method to make our model more accurate and open world ready
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2,
                                                     random_state = 42,
@@ -113,6 +124,6 @@ X_new = [5.7, 3.8, 1.7, 0.3]
 
 new_prediction = knn.predict(X_new)
 
-print('Classified as: ' + str(iris['target_names'][new_prediction]))
+print(iris['target_names'][new_prediction])
 
 #So, with an accuracy of 0.966666666667 we can say it's a Iris Setosa
