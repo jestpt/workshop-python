@@ -22,5 +22,5 @@ plt.hist2d(x = HomeTeamGoals,
            bins = (range(8),range(7)))
 plt.xlabel("Home Team Goals")
 plt.ylabel("Away Team Goals")
-plt.colorbar()
+plt.colorbar(extend = 'both')
 plt.show()
