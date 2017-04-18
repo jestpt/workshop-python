@@ -8,12 +8,10 @@
 ############## I - WORK AROUND AND K-NEAREST NEIGHBORS FIT ##############
 #########################################################################
 
-
 #first, we import the packages we are going to use
 import sklearn as skl
 import pandas as pd
 import seaborn as sns; sns.set(style="ticks", color_codes=True)
-import os
 
 #secondly, we import the sample datasets from skl to work
 from sklearn import datasets
@@ -25,22 +23,19 @@ iris = datasets.load_iris()
 print('# --- How is our data stored?')
 print(type(iris))
 print(iris)
-os.system('pause')
-os.system('cls')
+
 print('# --- What are the keys of this dictionary?')
 print(iris.keys())
-os.system('pause')
+
 print('# --- What is the data?')
 print(iris['feature_names'])
 print(iris['data'])
 print('Ammount of data: ' + str(len(iris['data'])))
-os.system('pause')
+
 print('# --- What is the target?')
 print(iris['target_names'])
 print(iris['target'])
 print('Ammount of targets: ' + str(len(iris['data'])))
-os.system('pause')
-os.system('cls')
 
 #so let's separate our data (X) from our target(y)
 X = iris['data']
@@ -50,8 +45,6 @@ y = iris['target']
 iris_table = pd.DataFrame(X, columns = iris['feature_names'])
 print('# --- Better visualization with Pandas')
 print(iris_table.head())
-os.system('pause')
-os.system('cls')
 
 #to do some cool visual EDA we'll use seaborn that we already imported as sns
 
@@ -74,8 +67,6 @@ knn.fit(X, y)
 
 #now, although it's not correct, let's test our model against the dataset we used to create it
 print(knn.score(X, y))
-os.system('pause')
-os.system('cls')
 
 #########################################################################
 ############### II - TRAIN / TEST SPLIT + FIT / ACCURACY ################
