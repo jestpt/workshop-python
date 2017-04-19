@@ -1,240 +1,268 @@
 ###############################################################################
 ### JEST - Junior Enterprise for Science and Technology #######################
 ###############################################################################
-### Workshop de Python - Introdução ao Python II ############################## 
-### Importação e manipulação de dados usando os packages NumPy e pandas #######
+### Workshop de Python - Python Introduction II ###############################
+### Import and data manipulation using pandas and NumPy packages ##############
 ###############################################################################
 
-# Importar o package NumPy
+# Import the NumPy package
 import numpy as np
-# Importar o package pandas
+# Import the pandas package
 import pandas as pd
 
-## Manipulação de dados
-# Cria listas
+## Data manipulation
+# List creation
 list1 = [6, 4, -1, 12]
 list2 = [2, -3, 10, 0]
 
-# Juntar duas listas numa
+# Join two lists into one
 list_merge = list1 + list2
-print('\nJuntar duas listas numa: ', list_merge)
+print('\nJoin the two lists into one: ', list_merge)
 
-# Em Python, o primeiro elemento de uma lista corresponde ao índice 0
-print('\nPrimeiro elemento de list1 (índice 0): ', list1[0])
+# In Python, the first ellement of a list corresponds to the index 0
+print('\nFirst element of the list1 (index 0): ', list1[0])
 
-# Selecionar alguns elementos da lista
-# Imprime o valor do índice 1 até ao 3 exclusive!
-print('\nValores de list1 entre os índices 1 e 2', list1[1:3]) 
+# Select only some ellements from the list
+# Prints the value of the index 1 to the index 3, but index 3 is not included
+print('\nValues of list1 between indexes 1 and 2', list1[1:3])
 
-# Soma dos valores de uma lista
-print('\nSoma de list1: ', sum(list1))
+# Sum of the values inside a list
+print('\nSum of list1: ', sum(list1))
 
-## Manipulação de dados usando o NumPy
-# Converte uma lista para um NumPy array - np.array()
+####################################
+######### Problem 1 ################
+####################################
+# - Doing sums on Python only concatenates the two list. Create a function that sums the elements from two lists one by one.
+
+## Data Manipulation using NumPy
+# Change a list to a NumPy Array - np.array()
 np_list1 = np.array(list1)
 np_list2 = np.array(list2)
 
-# Tamanho de list1
-print('\nTamanho de list1: ', np_list1.shape)
-
-# Operações matemáticas com NumPy arrays que não seriam possíveis com listas "tradicionais"
-# Soma de dois vetores
-np_sum = np_list1 + np_list2 
+# Mathematical operations in NumPy don't work with 'traditional' lists
+# Sum of two vectors
+np_sum = np_list1 + np_list2
 print('\nlist1 + list2 = ', np_sum)
 
-# Subtração de dois vetores
-np_sub = np_list1 - np_list2 
+# Subtraction of two vectors
+np_sub = np_list1 - np_list2
 print('\nlist1 - list2 = ', np_sub)
 
-# Multiplicação de dois vetores (Diferente da multiplicação algébrica de vetores!)
-np_mult = np_list1 * np_list2 # Multiplica elemento a elemento
+# Multiplication of two vectors (Different from the algebraic multiplication of two vectors!)
+np_mult = np_list1 * np_list2 # Multiplies element by element
 print('\nlist1 * list2 = ', np_mult)
 
-# Divisão de dois vetores
-np_div = np_list1 / np_list2 
+# Division of two vectos
+np_div = np_list1 / np_list2
 print('\nlist1 / list2 = ', np_div)
 
-# Potência dos elementos das listas
+# Power of list elements
 np_list1_square = np_list1 ** 2
-print('\nElevar a 2 = ', np_list1_square)
+print('\nTo the power of 2 = ', np_list1_square)
 np_list1_cube = np_list1 ** 3
-print('\nElevar a 3 = ', np_list1_cube)
+print('\nTo the power of 3 = ', np_list1_cube)
 
-# Análise estatística
-print('\nMédia: ', np.mean(list1))
-print('\nDesvio padrão: ', np.std(list1))
-print('\nMediana: ', np.median(list1))
-print('\nCorrelação entre list1 e list2:\n', np.corrcoef(list1,list2))
 
-# Matrizes
+# Statistical Analysis
+print('\nMean: ', np.mean(list1))
+print('\nStandart Deviation: ', np.std(list1))
+print('\nMedian: ', np.median(list1))
+print('\nCorrelation Coeficient between list1 and list2:\n', np.corrcoef(list1,list2))
+
+####################################
+######### Problem 2 ################
+####################################
+#Create a function that acepts a list as an argument and that calculates the mean, median, standart deviation and returns the values nicely presented
+
+##Matrices
 np_matrix = np.array([[1.73, 1.68, 1.71, 1.89, 1.79],
                       [65.4, 59.2, 63.6, 88.4, 68.7]])
-print('\nMatriz:\n', np_matrix)
+print('\Matrix:\n', np_matrix)
 
-# Tamanho da matriz
-print('\nTamanho da matriz: ', np_matrix.shape, ' - duas linhas, cinco colunas')
+# Size of the matrix
+print('\nSize of the matrix: ', np_matrix.shape, ' - two lines, five columns')
 
-# Acessar os diferentes elementos da matriz
-print('\nPrimeira coluna: ', np_matrix[0])
-print('\n1. Elemento (0,2):', np_matrix[0][2])
-print('\n2. Elemento (0,2):', np_matrix[0,2]) # Semelhante ao comando anterior
-print('\nTodas as linhas, colunas 1 a 3:\n', np_matrix[:,1:4])
-print('\nLinha 1, todas as colunas: ', np_matrix[1,:])
+# Access different elements inside the matrix
+print('\nFirst line: ', np_matrix[0])
+print('\n1. Element in the first line, third column:', np_matrix[0][2])
+print('\n2. The same element but accessed in a different way:', np_matrix[0,2]) # Semelhante ao comando anterior
+print('\nAll the lines, columns one to three:\n', np_matrix[:,1:4])
+print('\nLinha 1, All the columns: ', np_matrix[1,:],'\n')
 
-# Alterar um elemento da matriz
+# Change an element inside a matrix
 np_matrix[1,3] = 75.9
 print(np_matrix)
 
-## Gerar dados aleatórios (np.random)
-# Gera 50 exemplos de acordo com a lei normal com média 1.75 e desvio padrão 0,20
-height = np.round(np.random.normal(1.75, 0.20, 50),2)
+## Create random data (np.random)
+# Creates 50 values that follow a normal rule with the mean 1.74 and standart deviation .20
+height = np.random.normal(1.75, 0.20, 50)
+height = np.round(height, 2)
 
-# Gera 50 exemplos de acordo com a lei normal com média 60.32 e desvio padrão 15
+# Creates 50 values that follow a normal rule with the mean 60.32 and standart deviation 15
 weight = np.round(np.random.normal(60.32, 15, 50),2)
 
-# Juntar os dois arrays anteriores numa tabela
+
+# Join two arrays in a table
 data = np.column_stack((height, weight))
 print('\nJunta os arrays com dados aleatórios\n', data)
 
-###############################################################################
+####################################
+######### Problem 3 ################
+####################################
+# - Create a function that calculates the BMMI. To create the values for weight and height use the lines given previously.
 
-## Importar dados de ficheiros
-# Mostrar os ficheiros que estão na diretoria - ls
+## Import data from files
 
-# Ler um ficheiro de texto
+# Read a text file
 filename = 'sales_comma.txt'
-file = open(filename, mode = 'r') # Abre o ficheiro para leitura - 'r' (read)
+file = open(filename, mode = 'r') # opens the file for reading - 'r' (read)
 text = file.read()
-file.close() # Fechar o ficheiro 
+file.close() # closes the file
 
-# Verificar se o ficheiro está fechado
+# Check if the file is closed
 print('\nFicheiro fechado? ', file.closed)
 
 filename = 'sales_comma.txt'
 file = open(filename, mode = 'r')
-print('\nPrimeira linha\n', file.readline()) # Lê a primeira linha do ficheiro
-print('\nSegunda linha\n', file.readline()) # Lê a segunda linha do ficheiro, e assim sucessivamente
+print('\nPrimeira linha\n', file.readline()) # Reads the first line of the file
+print('\nSegunda linha\n', file.readline()) # reads the second line of the file, and so on
 file.close()
 
-# Escrever num ficheiro
+# Write a file
 filename_write = 'teste.txt'
-file = open(filename_write, mode = 'w') # Abre o ficheiro para escrita - 'w' (write)
+file = open(filename_write, mode = 'w') # opens the file for writing - 'w' (write)
 file.write('\tEscrita em ficheiros \n\n')
-file.write(text) # Escreve no novo ficheiro o texto lido no ficheiro 
-                 # sales_comma.txt - text
+file.write(text) # Writes the text in the new file
 file.close()
 
 ###############################################################################
-## Importar ficheiros usando o pandas
+## Import files using pandas
 
 filename = 'elections.csv'
 
-# Lê um ficheiro .csv - df_elections será do tipo DataFrame
+# Reads the file .csv - df_elections will be a DataFrame object
 df_elections = pd.read_csv(filename)
 
-# Converte um DataFrame para um NumPy array (útil para as manipulações através 
-# das funções deste package)
+# Converts the DataFrame to a NumPy array (useufull to manipulate data with the
+#functions from this package)
 df_electionsNP = df_elections.values
 
-# Mostrar apenas as primeiras cinco linhas da tabela
+# Only show the first five lines of the table
 print('\nPrimeiras cinco linhas:\n\n', df_elections.head())
 
-# nrows = 2 : Lê as primeiras dez linhas
+# nrows = 10 : shows the first 10 lines
 df_elections10 = pd.read_csv(filename, nrows = 10)
 print('\nPrimeiras dez linhas:\n\n', df_elections10)
 
-# Leitura a partir de ficheiros que não sejam do tipo csv e com diferentes 
-# separadores (por exemplo, vírgula e tabulação)
+####################################
+######### Problem 4 ################
+####################################
+# - Create a program that opens df_elections and counts the number of times that Hillary Clinton is named
+
+# read files that are not csv type and have different 
+# separators (for example, commas or tabs)
 filename_comma = 'sales_comma.txt'
 filename_tab = 'sales_tab.txt'
 
 df_salesComma = pd.read_table(filename_comma, sep = ',', index_col = 'month')
 df_salesTab = pd.read_table(filename_tab, sep = '\t', index_col = 'month')
 
-## Manipulação de dados usando o pandas
-# Indexação de DataFrames
+## Data manipulation using pandas
+# indexation of DataFrames
 df = pd.read_csv('sales.csv', index_col = 'month')
 print('\nDataFrame sales\n\n', df)
 
-# Acessar os elementos da tabela
+# Access elements in the table
 
-# Desta forma, deve inserir-se primeiro o label da coluna e só depois o label 
-# da linha
+# This way, we must first call the label of the column and after the label of
+# the line
 print('\n1. (Jan,salt):', df['salt']['Jan'])
 
-# Semelhante ao comando anterior
-print('\n2. (Jan,salt):', df.salt['Jan']) 
+# Similar to the previous command
+print('\n2. (Jan,salt):', df.salt['Jan'])
 
-# iloc: acessar a partir da posição na tabela
-# loc: acessar a partir dos labels. Em ambos os casos será [linha,coluna]
+# iloc: access from the position in the table
+# loc: access through the labels. In both cases we should use [line, column]
 print('\n3. (Jan,salt):', df.iloc[0,1])
 print('\n4. (Jan,salt):', df.loc['Jan','salt'])
 
-# Apresentar apenas algumas colunas na ordem desejada
-print('\nColunas salt e eggs:\n\n', df[['salt','eggs']])
+####################################
+######### Problem 5 ################
+####################################
+# - Do the mean of the shopping values for each month. If in one of those appears a null value, remove that line.
 
-# Apresentar todas as linhas (:) e apenas algumas colunas (Ex: a:d)
+# Show only some columns in the desired order
+print('\nColumns salt and eggs:\n\n', df[['salt','eggs']])
+
+# Show all the lines (:) and only some columns (Ex: a:d)
 print(df.loc[:,'eggs':'salt'])
-print(df.iloc[:,0:2]) # Inclui as colunas 0 até 2 exclusive!
+print(df.iloc[:,0:2]) # Inclues columns 0 and 1.
 
-# Apresentar todas as colunas (:) e apenas algumas linhas (Ex: a:d)
+# Show all the columns (:) and just some lines (Ex: a:d)
 print(df.loc['Jan':'Apr',:])
-print(df.iloc[1:4,:]) # Inclui as linhas 1 até 4 exclusive!
+print(df.iloc[1:4,:]) # Show lines 1, 2 and 3.
 
-# Inverter a ordem das linhas de a até b: df.loc['b':'a':-1]
+# Invert the order of the lines from a to b: df.loc['b':'a':-1]
 print(df.loc['Jun':'Mar':-1])
 
-# Filtrar os dados
-# Devolve um boolean para cada condição
-print('\nNúmero de ovos maior ou igual a 132 (True ou False)\n', df.eggs >= 132)
+# Filter the data
+# Returns a boolean for each condition
+print('\nNumber of eggs equal or superior of 132 (True ou False)\n', df.eggs >= 132)
 
 # Mostra as linhas que satisfazem aquela condição
-print('\nLinhas que satisfazem a condição eggs >= 132\n', df[df.eggs >= 132])
+print('\nLLines that satisfy the condition >= 132\n', df[df.eggs >= 132])
 
-# Combinar filtros: & - interseção (e); | - união (ou)
+# Combine filters: & - intersection (e); | - reunion (ou)
 print(df[(df.salt >= 50) & (df.eggs < 200)])
 print(df[(df.salt >= 50) | (df.eggs < 200)])
 
-# Criar uma nova coluna com label 'bacon'
+# Create a new list with the label 'bacon'
 df['bacon'] = [0, 0, 50, 60, 70, 80]
 print(df)
 
-# Seleciona as colunas com NaN's
+# Select the columns with NaN's
 print(df.loc[:,df.isnull().any()])
 
-# Exclui as colunas com NaN's
+# Excludes the columns with NaN's
 print(df.loc[:,df.notnull().all()])
 
-# Exclui as linhas com NaN's
-print(df.dropna(how = 'any')) 
+# Excludes the lines with NaN's
+print(df.dropna(how = 'any'))
 
-# Trata, por exemplo, os valores 20 e 47 como um NaN - na_values = []
+# Considers the values 20 and 47 as NaN - na_values = []
 data = pd.read_csv('sales.csv', index_col = 'month', sep = ',', na_values = [20, 47])
-print('\nDataFrame que considera os valores 20 e 47 como NaN\n',data)
+print('\nDataFrame with 20 and 47 as NaN\n',data)
 
-# Operações matemáticas com dígitos
-df.eggs += 5 # Soma 5 a todos os valores da coluna 'eggs'
-df.apples *= 2 # Multiplica por 2 todos os valores da coluna 'apples'
+# Mathematical operations with digits
+df.eggs += 5 # Sums 5 to all values in the columns 'eggs'
+df.apples *= 2 # Multiplies all values in the columns 'apples' by 2
 
-df.eggs -= 5 # Subtrai 5 a todos os valores da coluna 'eggs'
-df.apples /= 2 # Divide por 2 todos os valores da coluna 'apples'
+df.eggs -= 5 # Subtracts 5 to all values in column 'eggs'
+df.apples /= 2 # divides by 2 all the values in the column 'apples'
 
-df.eggs[df.salt > 55] += 10 # Soma 10 a todos os valores da coluna 'eggs' cujas
-                            # linhas satisfazem aquela condição 
+df.eggs[df.salt > 55] += 10 # sums 10 to all values in the column 'eggs' in
+                            # the lines that satisfy the condition
 
-# Alterar os labels
+#  Change the labels
 df.columns = ['eggs','sugar','pears','bacon']
 
-# Transforma todos os labels correspondentes à variável indexada ('month') para
-# strings com maiúsculas
+# Changes all the values indexed to the label ('month') to
+# strings with uppercase
 df.index = df.index.str.upper()
 
-# Transforma todos os labels correspondentes à variável indexada ('month') para
-# strings com minúsculas
+# Changes all the values indexed to the label ('month') to
+# strings with lowercase
 df.index = df.index.map(str.lower)
 
-# No caso de colunas cujos valores são do tipo string, podemos aplicar os 
-# comandos anteriores. Por exemplo, no caso da tabela das eleições dos USA:
-df_elections.state = df_elections.state.str.upper() 
+# In the columns in which the values are strings, we can apply the previous
+# commands. For example, in the elections dataset from the USA:
+df_elections.state = df_elections.state.str.upper()
 print(df_elections)
 
+####################################
+######### Problem 6 ################
+####################################
+# - Open the Titanic dataset and create a program that calculates:
+# - the average value of the age of the people in the Titanic
+# - % of men who survived the disaster
+# - % of women who survived the disaster
