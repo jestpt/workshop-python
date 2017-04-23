@@ -1,26 +1,39 @@
 import matplotlib.pyplot as plt
+import numpy as np
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 with open("Goals.txt","r") as f:
     HomeTeamGoals = [int(x) for x in f.readline().strip("\n").strip(" ").split(" ")]
     AwayTeamGoals = [int(x) for x in f.readline().strip("\n").strip(" ").split(" ")]
 
 TotalGoals = HomeTeamGoals + AwayTeamGoals
-plt.figure(figsize = (8,5))
-plt.hist(x = (HomeTeamGoals,AwayTeamGoals,TotalGoals),
+fig = plt.figure(figsize = (8,5))
+ax = fig.add_subplot(111)
+ax.hist(x = (HomeTeamGoals,AwayTeamGoals,TotalGoals),
          bins = range(8),
          label = ["Home Team Goals","Away Team Goals", 
          "Total Goals Scored"],
          align = "left")
-plt.legend()
-plt.xlabel("Goals Scored")
-plt.ylabel("Number of goals scored")
+ax.legend()
+ax.set_xlabel("Goals Scored")
+ax.set_ylabel("Games Played")
 plt.show()
 
-plt.figure(figsize = (8,5))
-plt.hist2d(x = HomeTeamGoals,
+
+
+fig, ax = plt.subplots()
+divider = make_axes_locatable(ax)
+cax = divider.append_axes( 'bottom',size='5%', pad=0.55)
+H = ax.hist2d(x = HomeTeamGoals,
            y = AwayTeamGoals,
            bins = (range(8),range(7)))
-plt.xlabel("Home Team Goals")
-plt.ylabel("Away Team Goals")
-plt.colorbar(extend = 'both')
+ax.set_xlabel("Home Team Goals")
+ax.set_ylabel("Away Team Goals")
+
+print(H[3])
+print('------------------------------------------------------------------')
+print(H)
+
+bar = fig.colorbar(H[3],cax,orientation='horizontal')
+bar.set_label('Goals')
 plt.show()
