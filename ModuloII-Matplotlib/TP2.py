@@ -35,8 +35,8 @@ plt.show()
 
 
 fig, ax = plt.subplots()
-divider = make_axes_locatable(ax)
-cax = divider.append_axes( 'bottom',size='5%', pad=0.55)
+#divider = make_axes_locatable(ax)
+#cax = divider.append_axes( 'bottom',size='5%', pad=0.55)
 H = ax.hist2d(x = HomeTeamGoals,
            y = AwayTeamGoals,
            bins = (range(8),range(7)))
@@ -47,6 +47,6 @@ print(H[3])
 print('------------------------------------------------------------------')
 print(H)
 
-bar = fig.colorbar(H[3],cax,orientation='horizontal')
+bar = fig.colorbar(H[3],orientation='horizontal')
 bar.set_label('Goals')
 plt.show()
