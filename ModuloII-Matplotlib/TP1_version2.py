@@ -33,6 +33,14 @@ plt.show()
 #Scatter() representa apenas os pontos do gráfico
 #For every x, y pair of arguments, there is an optional third argument which is the format string that indicates the color and line type of the plot
 #Colors available: https://www.w3schools.com/cssref/css_colors.asp
+'''
+plt.plot(color='blue')        # specify color by name
+plt.plot(color='g')           # short color code (rgbcmyk)
+plt.plot(color='0.75')        # Grayscale between 0 and 1
+plt.plot(color='#FFDD44')     # Hex code (RRGGBB from 00 to FF)
+plt.plot(color=(1.0,0.2,0.3)) # RGB tuple, values 0 to 1
+plt.plot(color='chartreuse')  # all HTML color names supported
+'''
 fig, (ax1,ax2) = plt.subplots(2,1)
 ax1.scatter(xVariable, AwayTeamGoals, c = "#FF1493", s = 12)
 ax2.scatter(xVariable, HomeTeamGoals, c = "red", s = 12)
@@ -70,10 +78,6 @@ ax.text(np.random.randint(0,140),np.random.randint(0,6),'random place',fontsize 
 ax.annotate('local max', xy=(20, 6), xytext=(30,5.5),arrowprops=dict(facecolor='red', shrink=0.01))
 plt.show() 
 
-
-
-
-
 '''
 #Exercise 1
 fig = plt.figure()
@@ -104,91 +108,10 @@ ax.annotate('local maximum',
 ax.annotate('local minimum', 
             #ArrowHead coord, 
             #Text Coord,
-            bbox=dict(boxstyle="round", fc ='w',ec="b"),
+            #bbox=dict(),
             #arrowprops=dict()
             )
 plt.show()
-'''
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-x = np.linspace(0, 10, 30)
-y = np.sin(x)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.set_title('I Did it!')
-ax.plot(x, y, '-p', color='gray',
-         markersize=14, linewidth=4,
-         markerfacecolor='white',
-         markeredgecolor='gray',
-         markeredgewidth=2,
-         label = 'Exercise 1')
-ax.legend(loc = 4,frameon = True,shadow = True, borderpad = 0.8)
-ax.axis([-0.2,10.2,-1.1, 1.1])
-plt.show()
-
-
-plt.title('I Did it!')
-plt.plot(x, y, '-p', color='gray',
-         markersize=14, linewidth=4,
-         markerfacecolor='white',
-         markeredgecolor='gray',
-         markeredgewidth=2,
-         label = 'Exercise 1')
-plt.legend(loc = 4,frameon = True,shadow = True, borderpad = 0.8)
-plt.axis([-0.2,10.2,-1.1, 1.1])
-plt.show()
-'''
-
-
-'''
-fig, ax = plt.subplots()
-x = np.linspace(0, 20, 1000)
-ax.plot(x, np.cos(x))
-ax.axis('equal')
-
-ax.annotate('local maximum', xy=(2*np.pi, 1), xytext=(10, 4),
-            arrowprops=dict(facecolor='black', shrink=0.05,width = 0.8))
-
-ax.annotate('local minimum', xy=(5 * np.pi, -1), xytext=(2, -6),
-            bbox=dict(boxstyle="round", fc ='w',ec="b"),
-            arrowprops=dict(arrowstyle="->",
-            connectionstyle="angle3,angleA=0,angleB=-90"));
-plt.show()
-
-
-
-
-
-plt.plot(x, np.cos(x))
-plt.axis('equal')
-
-plt.annotate('local maximum', xy=(2*np.pi, 1), xytext=(10, 4),
-            arrowprops=dict(facecolor='black', shrink=0.05,width = 0.8))
-
-plt.annotate('local minimum', xy=(5 * np.pi, -1), xytext=(2, -6),
-            bbox=dict(boxstyle="round", fc ='w',ec="b"),
-            arrowprops=dict(arrowstyle="->",
-            connectionstyle="angle3,angleA=0,angleB=-90"));
-plt.show()
+#http://matplotlib.org/users/annotations.html
 '''

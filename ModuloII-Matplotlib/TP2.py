@@ -6,6 +6,18 @@ with open("Goals.txt","r") as f:
     HomeTeamGoals = [int(x) for x in f.readline().strip("\n").strip(" ").split(" ")]
     AwayTeamGoals = [int(x) for x in f.readline().strip("\n").strip(" ").split(" ")]
 
+fig = plt.figure(figsize = (8,5))
+ax = fig.add_subplot(111)
+ax.hist(x = HomeTeamGoals,
+        bins = range(8),
+        label = "Home Team Goals",
+        align = "left")
+ax.legend()
+ax.set_xlabel("Goals Scored")
+ax.set_ylabel("Games Played")
+plt.show()
+
+
 TotalGoals = HomeTeamGoals + AwayTeamGoals
 fig = plt.figure(figsize = (8,5))
 ax = fig.add_subplot(111)
@@ -13,7 +25,8 @@ ax.hist(x = (HomeTeamGoals,AwayTeamGoals,TotalGoals),
          bins = range(8),
          label = ["Home Team Goals","Away Team Goals", 
          "Total Goals Scored"],
-         align = "left")
+         align = "left"
+         )
 ax.legend()
 ax.set_xlabel("Goals Scored")
 ax.set_ylabel("Games Played")
