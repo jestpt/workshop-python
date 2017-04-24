@@ -30,7 +30,7 @@ suptitle()
 '''
 plt.show()
 
-#Scatter() representa apenas os pontos do gr·fico
+#Scatter() representa apenas os pontos do gr√°fico
 #For every x, y pair of arguments, there is an optional third argument which is the format string that indicates the color and line type of the plot
 #Colors available: https://www.w3schools.com/cssref/css_colors.asp
 '''
@@ -60,7 +60,8 @@ ax.set_xlabel(r'$\bigstar$Game Number$\bigstar$')  #Adds a label on X-axis. This
 #https://www.codecogs.com/latex/eqneditor.php                 <--------This is for the lazy ones
 ax.set_ylabel('Goals Scored')                      #Adds a lable on Y-axis.
 ticks = ['0 Goals','1 Goal','2 Goals', '3 Goals','4 Goals','5 Goals','6 Goals']
-plt.yticks([0,1,2,3,4,5,6],ticks)               #The labels in the 'ticks' array will be written on the corresponding position
+ax.set_yticks([0,1,2,3,4,5,6])               #The labels in the 'ticks' array will be written on the corresponding position
+ax.set_yticklabels(['0 Goals','1 Goals','2 Goals','3 Goals','4 Goals','5 Goals','6 Goals']) #The labels in will be written in the corresponding position
 ax.set_ylim(bottom=-1)
 ax.set_xlim(0,50)
 #Try seting xlim and ylim in one code line!
